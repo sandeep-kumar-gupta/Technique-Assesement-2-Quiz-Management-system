@@ -18,6 +18,8 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
     private int score;

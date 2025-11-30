@@ -18,7 +18,7 @@ public class Question {
     private long id;
 
     @ManyToOne
-    @JsonManagedReference
+    @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
     private String text;
