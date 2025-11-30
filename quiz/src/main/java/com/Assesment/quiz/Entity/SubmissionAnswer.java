@@ -23,4 +23,7 @@ public class SubmissionAnswer {
     @Column (length = 2000)
     private String answerText;
 
+    @ManyToOne
+    private Question question;
+
 }
