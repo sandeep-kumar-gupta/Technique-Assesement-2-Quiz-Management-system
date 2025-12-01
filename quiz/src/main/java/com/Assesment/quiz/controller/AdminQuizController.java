@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/admin/quizzes")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AdminQuizController {
 
     @Autowired
     private final QuizService quizService;
 
-    @PostMapping
+    @PostMapping(consumes = "application/json;charset=UTF-8")
     public Quiz createquiz(@RequestBody Quiz quiz){
         return quizService.createQuiz(quiz);
     }

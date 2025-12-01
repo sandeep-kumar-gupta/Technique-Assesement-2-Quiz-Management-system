@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -26,9 +28,18 @@ public class Submission {
     private int totalQuestions;
     private Instant submittedAt;
 
-    @OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+   /* @OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<SubmissionAnswer> answers;
+    private List<SubmissionAnswer> answers;*/
+
+    @ElementCollection
+    @CollectionTable(
+            name = "submission_answers",
+            joinColumns = @JoinColumn(name = "submission_id")
+    )
+    @MapKeyColumn(name = "question_id")
+    @Column(name = "answer")
+    private Map<Long, String> answers = new HashMap<>();
 
     @PrePersist
     public void prePersist(){

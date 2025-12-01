@@ -1,5 +1,6 @@
 package com.Assesment.quiz.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +19,8 @@ public class Option {
     private long id;
 
     @ManyToOne
-    @JsonManagedReference
+    @JoinColumn(name = "question_id")
+    @JsonIgnore
     private Question question;
     private String text;
     private boolean correct;

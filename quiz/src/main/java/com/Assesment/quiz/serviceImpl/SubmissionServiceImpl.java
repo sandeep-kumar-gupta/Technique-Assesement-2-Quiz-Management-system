@@ -7,9 +7,11 @@ import com.Assesment.quiz.repositories.SubmissionRepository;
 import com.Assesment.quiz.service.SubmissionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -17,8 +19,11 @@ import java.util.Map;
 public class SubmissionServiceImpl implements SubmissionService {
 
 
+    @Autowired
     private final QuizRepository quizRepository;
+    @Autowired
     private final SubmissionRepository submissionRepository;
+    @Autowired
     private final SubmissionAnswerRepository submissionAnswerRepository;
 
     @Transactional
@@ -29,6 +34,8 @@ public class SubmissionServiceImpl implements SubmissionService {
         Submission submission = new Submission();
         submission.setQuiz(quiz);
         submission.setTotalQuestions(quiz.getQuestionList().size());
+        submission.setAnswers(answers);
+
         submission = submissionRepository.save(submission);
 
         int score = 0;

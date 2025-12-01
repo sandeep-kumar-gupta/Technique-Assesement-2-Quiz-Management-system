@@ -1,5 +1,6 @@
 package com.Assesment.quiz.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +26,7 @@ public class Quiz {
     private Instant createdAt;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnoreProperties("quiz")
     private List<Question> questionList;
 
     @PrePersist

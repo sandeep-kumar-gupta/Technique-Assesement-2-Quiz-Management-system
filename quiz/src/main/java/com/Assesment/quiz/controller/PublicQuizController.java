@@ -14,8 +14,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class PublicQuizController {
+
     @Autowired
     private final QuizService quizService;
+    @Autowired
     private SubmissionService submissionService;
 
     @GetMapping("/quizzes/{id}")
